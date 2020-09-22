@@ -1,4 +1,5 @@
 import React from 'react';
+// import styled from 'styled-components';
 
 const Counter = ({number, diff, onInc, onDec, onDiff }) => {
   const onChange = e => {
@@ -6,14 +7,14 @@ const Counter = ({number, diff, onInc, onDec, onDiff }) => {
     onDiff(parseInt(e.target.value, 10));
   };
   return (
-    <p>
+    <div>
       <h1>{number}</h1>
       <div>
         <input type="number" value={diff} onChange={onChange} />
         <button onClick={onInc}>+</button>
         <button onClick={onDec}>-</button>
       </div>
-    </p>
+    </div>
   );
 }
 

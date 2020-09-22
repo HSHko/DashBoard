@@ -1,6 +1,5 @@
 /* 브라우저(모바일 브라우저를 포함하여)를 광범위하게 지원하며, HTML5 요소, 타이포그래피, 목록(lists), embeded 콘텐츠, 폼과 테이블을 일관성있게 통일시키는 CSS를 포함한다.    */
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
-
 /* Document
    ========================================================================== */
 
@@ -8,7 +7,6 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
-
  html {
     line-height: 1.15; /* 1 */
     -webkit-text-size-adjust: 100%; /* 2 */

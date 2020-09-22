@@ -1,25 +1,29 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {ThemeProvider} from 'styled-components';
 import GlobalStyle from 'styles/globalStyle';
-import theme from 'styles/theme';
-import {Home} from './pages/pages';
+import customTheme from 'styles/theme';
+import * as pages from './pages/pages';
+import { CssBaseline } from "@material-ui/core";
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <ThemeProvider theme={theme}>
-        <Router basename={window.location.pathname || ''}>
+      <BrowserRouter>
+        <ThemeProvider theme={customTheme}>
+          <CssBaseline />
           <Switch>
-            <Route exact path="/">
-              <Home />
+            <Route path="/">
+              <pages.Home />
             </Route>
           </Switch>
-        </Router>
-      </ThemeProvider>
+        </ThemeProvider>
+      </BrowserRouter>
     </>
   );
 }
 
 export default App;
+
+// <BrowserRouter basename={window.location.pathname || ''}>

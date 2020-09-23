@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default React.memo((props, theme) => {
-  console.log('RE DDD RENDERED');
+export default React.memo((props) => {
+  console.log('RE RENDERED');
   return (
     <div>
       <h2>

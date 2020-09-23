@@ -1,30 +1,34 @@
 import React from 'react';
-import {useState} from 'react';
-import {useEffect} from 'react';
 import styled from 'styled-components';
 import Rerender from './Rerender';
 import List from './List';
 
 const array = ['One', 'Two', 'Three',];
+const initialCandies = ['milk', 'strawberry', 'rion', 'choco'];
 
 export default () => {
-  const [count, setCount] = useState(0);
-  const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState();
+  const [count, setCount] = React.useState(0);
+  const [todos, setTodos] = React.useState([]);
+  const [newTodo, setNewTodo] = React.useState();
 
-  const str = "This is prop title";
-  
-  function changeInputData(e) {
-    setNewTodo(e.target.value);
+  const [candies, setCandies] = React.useState(initialCandies);
+  function dispenseCandies(candy) {
+    setCandies(candies.filter(c => c !== candy));
   }
 
-  function addTodo(e) {
-    e.preventDefault();
-    setTodos([...todos, newTodo]);
+  function onClickHandler(e) {
+    switch(e.target.id) {
+      case "addTodo":
+        e.preventDefault();
+        setTodos([...todos, newTodo]);
+        break;
+      default: 
+        break;
+    }
   }
 
-  useEffect( () => {
-    console.log("새로운 내용이 렌더링");
+  React.useEffect( () => {
+    console.log("새로운 투두리스트가 렌더링");
   }, [todos])
 
 
@@ -33,17 +37,20 @@ export default () => {
       <h2>Count: {count}</h2>
       <div>
         <button onClick={() => {
-          setCount(count + 1);
+          setCount(x => x + 1);
         }}>
           ADD
         </button>
       </div>
-      <Rerender title={str} array={array}></Rerender>
+      <Rerender title="This is prop title" array={array}></Rerender>
 
       <h2>todo 어플리케이션</h2>
       <form action="">
-        <input type="text" name="" onChange={changeInputData}></input>
-        <button onClick={addTodo}>할일추가</button>
+        <input type="text" name="" onChange={e => {
+          setNewTodo(e.target.value);
+        }}>
+        </input>
+        <button id="addTodo" onClick={onClickHandler}>할일추가</button>
       </form>
 
       <List todos={todos}></List>
@@ -51,8 +58,18 @@ export default () => {
   )
 }
 
-
 const ClassBox = styled.div`
 
   text-align: center;
 `;
+
+
+/*
+  function onChangeHandler(e) {
+    switch(e.target.id) {
+      case "inputTodo":
+        setNewTodo(e.target.value); 
+        break;
+    }
+  }
+*/

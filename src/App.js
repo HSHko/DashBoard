@@ -15,6 +15,9 @@ function App() {
           <CssBaseline />
           <Switch>
             <Route path="/">
+              <pages.TestPage />
+            </Route>
+            <Route>
               <pages.Home />
             </Route>
           </Switch>

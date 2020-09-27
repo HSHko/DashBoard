@@ -6,18 +6,22 @@ export default () => {
   const [color, setColor] = React.useState("");
   const [movie, setMovie] = React.useState("");
 
-  const onChangeHandler = e => {
-    if (e.target.id === "color") setColor(e.target.value);
+  function onChangeHandler(e) {
+    if (e.target.id === "color") {
+      setColor(e.target.value);
+    }
     else setMovie(e.target.value);
   };
 
   return (
     <ClassContainer>
-      <div className="App">
+      <div>
         <div>
           <label>
             What is your favorite color of rainbow ?
-          <input id="color" value={color} onChange={onChangeHandler} />
+            <input id="color" type="text" value={color} 
+              onChange={onChangeHandler} 
+            />
           </label>
         </div>
         <div>
@@ -58,5 +62,5 @@ export default () => {
 
 
 const ClassContainer = styled.div`
-text-align: center;
+  text-align: center;
 `

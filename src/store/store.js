@@ -1,5 +1,5 @@
 import { createStore } from 'redux';
-import modules from './modules/modules';
+import modules from './modules';
 
 // 스토어를 만들고, 내보내줌
 // const configureStore = () => { ... export default configureStore;

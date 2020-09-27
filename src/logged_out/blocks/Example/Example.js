@@ -4,17 +4,11 @@ import Rerender from './Rerender';
 import List from './List';
 
 const array = ['One', 'Two', 'Three',];
-const initialCandies = ['milk', 'strawberry', 'rion', 'choco'];
 
 export default () => {
   const [count, setCount] = React.useState(0);
   const [todos, setTodos] = React.useState([]);
   const [newTodo, setNewTodo] = React.useState();
-
-  const [candies, setCandies] = React.useState(initialCandies);
-  function dispenseCandies(candy) {
-    setCandies(candies.filter(c => c !== candy));
-  }
 
   function onClickHandler(e) {
     switch(e.target.id) {
@@ -33,7 +27,7 @@ export default () => {
 
 
   return (
-    <ClassBox>
+    <CBox>
       <h2>Count: {count}</h2>
       <div>
         <button onClick={() => {
@@ -54,13 +48,14 @@ export default () => {
       </form>
 
       <List todos={todos}></List>
-    </ClassBox>
+    </CBox>
   )
 }
 
-const ClassBox = styled.div`
+const CBox = styled.div`
 
   text-align: center;
+  background-color: ${props => props.theme.color.red[3]};
 `;
 
 

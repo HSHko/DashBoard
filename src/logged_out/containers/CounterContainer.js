@@ -1,7 +1,7 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Counter from 'components/Counter/Counter';
-import * as counter from 'store/modules/counter';
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Counter from "../blocks/Counter";
+import * as counter from "store/modules/counter";
 
 export default () => {
   const storeCounter = useSelector(state => state.counter);
@@ -18,4 +18,4 @@ export default () => {
       />
     </div>
   );
-}
+};

@@ -1,32 +1,28 @@
-import React from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import {ThemeProvider} from 'styled-components';
-import GlobalStyle from 'styles/globalStyle';
-import customTheme from 'styles/theme';
-import * as pages from './pages/pages';
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "styles/globalStyle";
+import theme from "styles/theme";
 import { CssBaseline } from "@material-ui/core";
+
+const LoggedOut = React.lazy(() => import("./logged_out/Main"));
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
+      <CssBaseline />
       <GlobalStyle />
-      <BrowserRouter>
-        <ThemeProvider theme={customTheme}>
-          <CssBaseline />
+      <ThemeProvider theme={theme}>
+        <React.Suspense fallback={<div>Loading...</div>}>
           <Switch>
-            <Route path="/">
-              <pages.TestPage />
-            </Route>
             <Route>
-              <pages.Home />
+              <LoggedOut />
             </Route>
           </Switch>
-        </ThemeProvider>
-      </BrowserRouter>
-    </>
+        </React.Suspense>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
 export default App;
-
-// <BrowserRouter basename={window.location.pathname || ''}>

@@ -1,4 +1,4 @@
-export default {
+export const color = {
   /*ex.
     const Div = styled.div`
       background-color: ${props => props.theme.color.red[3]}

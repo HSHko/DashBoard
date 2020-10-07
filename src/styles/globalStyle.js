@@ -37,12 +37,3 @@ const globalStyle = createGlobalStyle`
 `;
 
 export default globalStyle;
-
-/*
-  
-
-
-
-    
-
-*/

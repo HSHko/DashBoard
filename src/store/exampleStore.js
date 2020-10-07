@@ -1,20 +1,18 @@
-import {createAction, handleActions} from 'redux-actions';
+import { createAction, handleActions } from "redux-actions";
 
 // ===================================================
 // 액션 타입 정의
-const ACTIONE_NAME = 'module_name/ACTION_NAME';
+const ACTIONE_NAME = "module_name/ACTION_NAME";
 
 // ===================================================
 // 액션 생성 함수
 // 사용예: increment(3), setColor({index: 5, color: #fff})
-export const increment = () => ({type: ACTION_NAME, index});
+export const increment = () => ({ type: ACTION_NAME, index });
 export const increment = () => {
-  return (
-    {
-      type: ACTION_NAME,
-      index,
-    }
-  )
+  return {
+    type: ACTION_NAME,
+    index,
+  };
 };
 export const setDiff = diff => ({ type: SET_DIFF, diff });
 // redux-actions을 사용하는 경우
@@ -28,11 +26,11 @@ export const action = createAction(ACTION_NAME, data => data);
 // ===================================================
 // 모듈의 초기화 상태
 const initialState = {
-  number: 0
+  number: 0,
 };
 const initialState = {
   number: 0,
-  diff: 1
+  diff: 1,
 };
 const initialState = {
   isOpen: false,
@@ -41,9 +39,9 @@ const initialState = {
   type: "ADD_TODO",
   data: {
     id: 0,
-    text: "리덕스 배우기"
-  }
-}
+    text: "리덕스 배우기",
+  },
+};
 
 // ===================================================
 // Reducer 함수 작성
@@ -53,49 +51,50 @@ const initialState = {
 // 똑같은 파라미터로 호출된 리듀서 함수는 언제나 똑같은 결과 값을 반환해야 한다
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_DIFF: return {...state,
-        diff: action.diff
-    };
-    case INC: return {...state,
-        number: state.number + state.diff
-    };
-    case DEC: return {...state,
-        number: state.number - state.diff
-    };
-    default: return state;
-  }
-}
-
-
-function reducer(state = initialState, action) {
-  switch (action.type) {
-    case ACTION_NAME:
+    case SET_DIFF:
       return {
-        
+        ...state,
+        diff: action.diff,
+      };
+    case INC:
+      return {
+        ...state,
+        number: state.number + state.diff,
+      };
+    case DEC:
+      return {
+        ...state,
+        number: state.number - state.diff,
       };
     default:
       return state;
   }
-}
+};
 
-const reducer = (state = initialState, action) => {
+export const increment = count => {
+  return {
+    type: INCREMENT,
+    payload: count + 1,
+  };
+};
+const counter = (state = initState, action) => {
   switch (action.type) {
-    case 'INCREMENT': return {
-        number: state.number + 1
-      };
-    case 'DECREMENT': return {
-        number: state.number - 1
-    };
-    default: return state;
+    case INCREMENT:
+      return { ...state, value: action.payload };
+    case DECREMENT:
+      return { ...state, value: action.payload };
+    default:
+      return state;
   }
 };
+// <Btn onClick={() => dispatch(actions.increment(count.value))}>+</Btn>
 
 const reducer = handleActions(
   {
     [INCREMENT]: (state, action) => {
-        return {number: state.number + 1};
+      return { number: state.number + 1 };
     },
-    [DECREMENT]: ({number}) => ({number: number - 1}),
+    [DECREMENT]: ({ number }) => ({ number: number - 1 }),
     [OPEN]: (state, _action) => {
       return produce(state, draft => {
         draft.isOpen = true;
@@ -116,8 +115,33 @@ const reducer = handleActions(
         draft[action.payload.type] = false;
       });
     },
-  }, 
-  initialState
+  },
+  initialState,
 );
 
 export default reducer;
+
+/*
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Counter from "../blocks/Counter";
+import * as counter from "store/modules/counter";
+
+export default () => {
+  const storeCounter = useSelector(state => state.counter);
+  const dispatch = useDispatch();
+
+  return (
+    <div>
+      <Counter
+        number={storeCounter.number}
+        diff={storeCounter.diff}
+        onInc={() => dispatch(counter.inc())}
+        onDec={() => dispatch(counter.dec())}
+        onDiff={() => dispatch(counter.setDiff(storeCounter.diff))}
+      />
+    </div>
+  );
+};
+
+*/

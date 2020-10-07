@@ -1,53 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Box, Button } from "@material-ui/core";
 import { Hide } from "styles/theme";
-import MenuIcon from "@material-ui/icons/Menu";
-import HomeIcon from "@material-ui/icons/Home";
-import BookIcon from "@material-ui/icons/Book";
-import HowToRegIcon from "@material-ui/icons/HowToReg";
-import LockOpenIcon from "@material-ui/icons/LockOpen";
+import { menuItems } from "./menuItems";
 import NavAnchor from "./NavAnchor";
+import { Box, Button } from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
+import { useDispatch } from "react-redux";
+import { mobileDrawers } from "store";
 
 export default React.memo(props => {
-  React.useEffect(() => console.log("Rendered NavBar.js"));
+  React.useEffect(() => {
+    console.log("Rendered NavBar.js");
+  });
 
-  const [isMobileDrawerOpen, setIsMobileDrawerOpen] = React.useState(false);
-  const handleMobileDrawer = React.useCallback(() => {
-    setIsMobileDrawerOpen(!isMobileDrawerOpen);
-    console.log("draw is now " + isMobileDrawerOpen);
-  }, [isMobileDrawerOpen]);
+  const dispatch = useDispatch();
 
-  const menuItems = [
-    {
-      name: "Home",
-      link: "/",
-      icon: <HomeIcon></HomeIcon>,
-    },
-    {
-      name: "Blog",
-      link: "/blog",
-      icon: <BookIcon></BookIcon>,
-    },
-    {
-      name: "Register",
-      icon: <HowToRegIcon></HowToRegIcon>,
-    },
-    {
-      name: "Login",
-      icon: <LockOpenIcon></LockOpenIcon>,
-    },
-  ];
+  const handleMobileDrawerOn = () => {
+    dispatch(mobileDrawers.hi());
+  };
 
   return (
-    <>
+    <nav>
       <Appbar>
         <Toolbar>
           <CorpLogo></CorpLogo>
           <Box>
             <Hide tmin>
-              <Button onClick={handleMobileDrawer}>
+              <Button onClick={handleMobileDrawerOn}>
                 <MenuIcon color="primary" size="large"></MenuIcon>
               </Button>
             </Hide>
@@ -70,7 +50,7 @@ export default React.memo(props => {
       <Hide mmax>
         <NavAnchor></NavAnchor>
       </Hide>
-    </>
+    </nav>
   );
 });
 

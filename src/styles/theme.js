@@ -5,6 +5,9 @@ import { createMuiTheme } from "@material-ui/core";
 /* eslint-disable */
 
 const vars = {
+  overlay: {
+    zIndex: 1,
+  },
   header: {
     height: "7rem",
     zIndex: 7,

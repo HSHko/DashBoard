@@ -1,19 +1,18 @@
 import React from "react";
-import styled from "styled-components";
-import * as Pages from "./pages";
+import * as pages from "./pages";
 import { NavBar } from "./containers";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function Main() {
   return (
-    <MainLayout>
+    <>
       <NavBar></NavBar>
-    </MainLayout>
+      <Switch>
+        <Route path="/" exact component={pages.Home}></Route>
+        <Route path="/blog" exact component={pages.Blog}></Route>
+      </Switch>
+    </>
   );
 }
-
-const MainLayout = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
 
 export default Main;

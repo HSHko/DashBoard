@@ -1,5 +1,5 @@
-const HI = "mobileDrawer/HI";
-const LO = "mobileDrawer/LO";
+const HI = "sideAnchor/HI";
+const LO = "sideAnchor/LO";
 
 export const hi = () => ({
   type: HI,

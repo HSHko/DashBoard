@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import mobileDrawer, * as mobileDrawers from "./mobileDrawer";
+import sideAnchor, * as sideAnchors from "./sideAnchor";
 
-export { mobileDrawers };
+export { sideAnchors };
 
 export default combineReducers({
-  mobileDrawer,
+  sideAnchor,
 });

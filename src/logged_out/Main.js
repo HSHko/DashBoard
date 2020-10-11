@@ -1,12 +1,12 @@
 import React from "react";
 import * as pages from "./pages";
-import { NavBar } from "./containers";
+import { Navbar } from "./containers";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function Main() {
   return (
     <>
-      <NavBar></NavBar>
+      <Navbar></Navbar>
       <Switch>
         <Route path="/" exact component={pages.Home}></Route>
         <Route path="/blog" exact component={pages.Blog}></Route>

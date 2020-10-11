@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-// import './normalize.css';
+import { gCss } from "./theme";
 
 const globalStyle = createGlobalStyle`
 
@@ -21,19 +21,22 @@ const globalStyle = createGlobalStyle`
     font-weight: 700;
   }
 
-  h1, .h1 {font-size: 6rem;}
-  h2, .h2 {font-size: 4rem;}
-  h3, .h3 {font-size: 3rem;}
-  h4, .h4 {font-size: 2rem;}
-  h5, .h5 {font-size: 1.5rem;}
-  h6, .h6 {font-size: 1.25rem;}  
+  h1, .h1 {font-size: ${gCss.h1}; margin: 0;}
+  h2, .h2 {font-size: ${gCss.h2}; margin: 0;}
+  h3, .h3 {font-size: ${gCss.h3}; margin: 0;}
+  h4, .h4 {font-size: ${gCss.h4}; margin: 0;}
+  h5, .h5 {font-size: ${gCss.h5}; margin: 0;}
+  h6, .h6 {font-size: ${gCss.h6}; margin: 0;}  
 
-  a {
+  a, button {
     text-decoration: none;
     color: inherit;
     cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    outline: none;
   }
-
 `;
 
 export default globalStyle;

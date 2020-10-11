@@ -4,13 +4,28 @@ import { createMuiTheme } from "@material-ui/core";
 
 /* eslint-disable */
 
+export const gCss = {
+  h1: "6rem",
+  h2: "4rem",
+  h3: "3rem",
+  h4: "2rem",
+  h5: "1.5rem",
+  h6: "1.25rem",
+};
+
 const vars = {
   overlay: {
     zIndex: 1,
   },
-  header: {
-    height: "7rem",
+  sidebar: {
     zIndex: 7,
+  },
+  header: {
+    height: "3.5rem",
+    zIndex: 7,
+  },
+  footer: {
+    bgColor: color.black,
   },
 };
 
@@ -67,16 +82,19 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       // light: will be calculated from palette.primary.main,
-      main: color.red[6],
       // dark: will be calculated from palette.primary.main,
       // contrastText: will be calculated to contrast with palette.primary.main
+      main: color.brown[3],
+      lv: color.brown,
     },
     secondary: {
-      // light: will be calculated from palette.secondary.main,
-      main: color.blue[6],
-      // dark: will be calculated from palette.secondary.main,
-      // contrastText: will be calculated from palette.secondary.main,
+      main: color.indigo[6],
+      lv: color.indigo,
     },
+    tetiary: {
+      lv: color.green,
+    },
+    test: color.lime,
   },
   vars,
   deviceSize,

@@ -1,38 +1,30 @@
 const express = require("express");
-const app = express();
+const App = express();
 const mongoose = require("mongoose");
-const models = require("./models");
 const routes = require("./routes");
+const auth = require("./auth");
 
-const port = 5000; // http://localhost:5000/
+// db.shutdownServer()
+// mongod --auth --dbpath E:\data\tdb
+// db.auth("admin", "welcome!" )
+// 참고링크 http://reffect.co.jp/node-js/express-jsnode-js-mongodb
+const PORT = 5000;
+console.log(auth.user);
+mongoose.connect("mongodb://127.0.0.1/tdb", auth);
 
-// http://reffect.co.jp/node-js/express-jsnode-js-mongodb
-const options = {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-};
-mongoose.connect("mongodb://127.0.0.1/tdb", options);
-
-// events:
-// error, open, connecting, connected
-// disconnecting, disconnected, close
-// reconnected, error, fullsetup, all, reconnectFailed
+// events: error, open, connecting, connected, disconnecting, disconnected, close, reconnected, error, fullsetup, all, reconnectFailed
 const db = mongoose.connection;
-db.on("error", console.error.bind(console, "DB connection error: ")); // 타임아웃시 출력
+db.on("error", console.error.bind(console, "MongoDB connection error: ")); // 타임아웃시 출력
 db.once("open", () => console.log("DB connected"));
 
-app.use("/users", routes.users);
+App.use("/user", routes.users);
 
-app.get("/", (req, res) => {
+App.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/newEndPoint", (req, res) => {
-  res.send("This is newEndPoint!");
+App.listen(PORT, () => {
+  console.log(`Example App listening at http://localhost:${PORT}`, module.filename, __filename);
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`, module.filename, __filename);
-});
-
-module.exports = app;
+module.exports = App;

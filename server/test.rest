@@ -1,0 +1,24 @@
+GET http://127.0.0.1:5000/user
+
+###
+GET http://127.0.0.1:5000/user/5f8478f115a44a4a247daaea
+
+###
+POST http://127.0.0.1:5000/user
+Content-Type: application/json
+
+{
+  "name": "John",
+  "age": 23
+}
+
+###
+PATCH http://127.0.0.1:5000/user/5f8478f115a44a4a247daaea
+Content-Type: application/json
+
+{
+  "age": 88
+}
+
+###
+DELETE http://127.0.0.1:5000/user/5f85469bad710831e4837f24

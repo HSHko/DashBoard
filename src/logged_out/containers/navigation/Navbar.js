@@ -10,45 +10,43 @@ import { useDispatch } from "react-redux";
 import { sideAnchors } from "store";
 
 export default React.memo(props => {
-  React.useEffect(() => {
-    console.log("rendered: Navbar.js");
-  }, []);
+  console.log("rendered: Navbar.js");
 
   const dispatch = useDispatch();
 
   return (
-    <nav>
+    <>
       <Wrapper>
-        <Toolbar>
+        <AppBar>
           <CorpLogo></CorpLogo>
           <Box>
             <Hide tmin>
-              <Button onClick={() => dispatch(sideAnchors.hi())}>
+              <button onClick={() => dispatch(sideAnchors.hi())}>
                 <MenuIcon style={{ color: "white" }} size="large"></MenuIcon>
-              </Button>
+              </button>
             </Hide>
             <Hide mmax>
-              {menuItems.map((e, idx) =>
-                e.link ? (
-                  <Link key={e.name} to={e.link}>
-                    <Button color="secondary" size="large">
+              <ToolBar>
+                {menuItems.map((e, idx) =>
+                  e.link ? (
+                    <Link className="navButton" key={e.name} to={e.link}>
                       {e.name}
-                    </Button>
-                  </Link>
-                ) : (
-                  <Button color="secondary" size="large">
-                    {e.name}
-                  </Button>
-                ),
-              )}
+                    </Link>
+                  ) : (
+                    <button className="navButton" key={e.name}>
+                      {e.name}
+                    </button>
+                  ),
+                )}
+              </ToolBar>
             </Hide>
           </Box>
-        </Toolbar>
+        </AppBar>
       </Wrapper>
       <Hide tmin>
         <NavAnchor></NavAnchor>
       </Hide>
-    </nav>
+    </>
   );
 });
 
@@ -58,7 +56,7 @@ const Wrapper = styled.div`
   background-color: ${p => p.theme.palette.test[0]};
 `;
 
-const Toolbar = styled.div`
+const AppBar = styled.div`
   width: 90%;
   height: ${p => p.theme.vars.header.height};
   max-width: ${p => p.theme.deviceSize.laptop.max};
@@ -74,5 +72,15 @@ const CorpLogo = styled.div`
   &::after {
     text-align: center;
     content: "Logo Area";
+  }
+`;
+
+const ToolBar = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  & > a,
+  button {
   }
 `;

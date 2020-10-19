@@ -3,7 +3,9 @@
 # custum
 .env
 .prettierrc
-auth*.js
+auth*
+*.rest
+*.sql
 
 # dependencies
 /node_modules

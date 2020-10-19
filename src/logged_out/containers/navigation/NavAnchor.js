@@ -18,7 +18,7 @@ export default props => {
   return (
     <Wrapper active={storesideAnchor.isHi}>
       <Toolbar className="Head">
-        <button className="Hover" onClick={() => dispatch(sideAnchors.lo())}>
+        <button onClick={() => dispatch(sideAnchors.lo())}>
           <CloseIcon color="primary"></CloseIcon>
           <h5>CLOSE</h5>
         </button>
@@ -26,12 +26,12 @@ export default props => {
       <Toolbar className="List">
         {menuItems.map((e, idx) => {
           return e.link ? (
-            <Link className="Hover" key={e.name} to={e.link}>
+            <Link key={e.name} to={e.link}>
               <AddToHomeScreenIcon size="large"></AddToHomeScreenIcon>
               <h6>{e.name}</h6>
             </Link>
           ) : (
-            <button className="Hover">
+            <button key={e.name}>
               <AddToHomeScreenIcon size="large"></AddToHomeScreenIcon>
               <h6>{e.name}</h6>
             </button>

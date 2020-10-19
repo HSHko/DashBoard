@@ -81,18 +81,16 @@ const theme = createMuiTheme({
   color,
   palette: {
     primary: {
-      // light: will be calculated from palette.primary.main,
-      // dark: will be calculated from palette.primary.main,
-      // contrastText: will be calculated to contrast with palette.primary.main
       main: color.brown[3],
       lv: color.brown,
     },
     secondary: {
-      main: color.indigo[6],
-      lv: color.indigo,
+      main: color.red[0],
+      lv: color.red,
     },
-    tetiary: {
-      lv: color.green,
+    default: {
+      main: color.indigo[3],
+      lv: color.brown,
     },
     test: color.lime,
   },

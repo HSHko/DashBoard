@@ -13,14 +13,6 @@ const globalStyle = createGlobalStyle`
     overflow: ${({ isOpen }) => (isOpen ? "hidden" : "visible")};
   }
 
-  button {
-    background: transparent;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    font-weight: 700;
-  }
-
   h1, .h1 {font-size: ${gCss.h1}; margin: 0;}
   h2, .h2 {font-size: ${gCss.h2}; margin: 0;}
   h3, .h3 {font-size: ${gCss.h3}; margin: 0;}
@@ -29,14 +21,21 @@ const globalStyle = createGlobalStyle`
   h6, .h6 {font-size: ${gCss.h6}; margin: 0;}  
 
   a, button {
+    display: flex;
+    margin: auto 0.5rem;
+    padding: 0;
+    outline: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
     text-decoration: none;
     color: inherit;
     cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    outline: none;
+    font-size: ${gCss.h6};
   }
+
+  .text-center {text-align: center;}
 `;
 
 export default globalStyle;

@@ -23,7 +23,7 @@ const globalStyle = createGlobalStyle`
   a, button {
     display: flex;
     margin: auto 0.5rem;
-    padding: 0;
+    padding: 0.25rem 0.5rem;
     outline: none;
     background: transparent;
     border: none;
@@ -36,6 +36,13 @@ const globalStyle = createGlobalStyle`
   }
 
   .text-center {text-align: center;}
+  .disp-flex {display: flex;}
+  .disp-inline {display: inline;}
+  .width80 {width: 80%;}
+  .width60 {width: 60%;}
+  .width50 {width: 50%;}
+  .width40 {width: 40%;}
+  .width20 {width: 20%;}
 `;
 
 export default globalStyle;

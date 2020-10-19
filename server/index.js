@@ -5,7 +5,7 @@ const auth = require("./auth");
 
 const PORT = 5000;
 
-// app.use(cors());
+app.use(cors());
 app.use(express.json()); // req.body
 app.listen(PORT, () => console.log(`APP Listening at PORT: ${PORT}`));
 

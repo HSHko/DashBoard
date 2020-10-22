@@ -1,27 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 
 export default React.memo(props => {
-  console.log(`rendered: Home.js`);
+  console.log("init");
+  useEffect(() => {
+    const getTodos = async e => {
+      try {
+        const res = await fetch("http://localhost:5000/todos");
+        const jsonData = await res.json();
+        setTodos(jsonData);
+      } catch (error) {
+        console.error(error.message);
+      }
+    };
+    getTodos();
+  }, []);
 
-  const [description, setDescription] = React.useState("ggHello, World!");
+  const inputRef = React.useRef("Hello, World!");
+  const [todos, setTodos] = React.useState([]);
 
   const onSubmit = async e => {
     e.preventDefault();
+    const description = inputRef.current.value;
     try {
       const body = { description };
-      const res = fetch("http://localhost:5000/todos", {
+      console.log(description);
+      console.log(body);
+      const res = await fetch("http://localhost:5000/todos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
       console.log(res);
-    } catch (error) {}
-  };
-
-  const handleOnChange = e => {
-    setDescription(e.target.value);
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   return (
@@ -30,13 +44,18 @@ export default React.memo(props => {
 
       <form onSubmit={onSubmit}>
         <TextField
+          inputRef={inputRef}
           label="FieldTitle"
           placeholder=""
-          defaultValue={description}
-          onChange={handleOnChange}
+          defaultValue={inputRef.current}
         />
-        <SButton>ADD</SButton>
+        <Sbutton>ADD</Sbutton>
       </form>
+
+      <h1>TODOLIST</h1>
+      {todos.map(e => {
+        return <div key={e.id}>{e.description}</div>;
+      })}
     </Wrapper>
   );
 });
@@ -47,7 +66,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const SButton = styled.button`
+const Sbutton = styled.button`
   display: inline;
   margin-top: 1rem;
   background-color: ${p => p.theme.color.red[2]};

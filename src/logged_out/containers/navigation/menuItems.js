@@ -21,6 +21,7 @@ export const menuItems = [
   },
   {
     name: "Login",
+    label: "login",
     icon: <LockOpenIcon></LockOpenIcon>,
   },
 ];

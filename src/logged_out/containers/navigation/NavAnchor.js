@@ -1,22 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { sideAnchors } from "store";
+import { sideAnchors, dialogs } from "store";
 import { menuItems } from "./menuItems";
 import styled, { css } from "styled-components";
 import CloseIcon from "@material-ui/icons/Close";
 import AddToHomeScreenIcon from "@material-ui/icons/AddToHomeScreen";
 
 export default props => {
-  React.useEffect(() => {
-    console.log("rendered: NavAnchor.js");
-    console.log("sideAnchor is now: " + storesideAnchor.isHi);
-  });
-  const storesideAnchor = useSelector(x => x.sideAnchor);
+  console.log("init");
+
   const dispatch = useDispatch();
+  const storeSideAnchor = useSelector(x => x.sideAnchor);
+  const handleOnClick = React.useCallback(
+    e => () => {
+      dispatch(sideAnchors.lo());
+      if (e.label === "login") {
+        dispatch(dialogs.hi("login"));
+      }
+    },
+    [dispatch],
+  );
 
   return (
-    <Wrapper active={storesideAnchor.isHi}>
+    <Wrapper active={storeSideAnchor.isHi}>
       <Toolbar className="Head">
         <button onClick={() => dispatch(sideAnchors.lo())}>
           <CloseIcon color="primary"></CloseIcon>
@@ -31,7 +38,7 @@ export default props => {
               <h6>{e.name}</h6>
             </Link>
           ) : (
-            <button key={e.name}>
+            <button key={e.name} onClick={handleOnClick(e)}>
               <AddToHomeScreenIcon size="large"></AddToHomeScreenIcon>
               <h6>{e.name}</h6>
             </button>
@@ -64,7 +71,7 @@ const Wrapper = styled.div`
 
 const Toolbar = styled.div`
   &.Head {
-    height: ${p => p.theme.vars.header.height};
+    height: ${p => p.theme.vars.navbar.height};
     background-color: ${p => p.theme.palette.primary.lv[4]};
     display: flex;
     align-items: center;

@@ -15,14 +15,14 @@ export const gCss = {
 
 const vars = {
   overlay: {
-    zIndex: 1,
+    zIndex: 1200,
   },
   sidebar: {
     zIndex: 7,
   },
-  header: {
+  navbar: {
     height: "3.5rem",
-    zIndex: 7,
+    zIndex: 5,
   },
   footer: {
     bgColor: color.black,
@@ -75,6 +75,15 @@ export const Hide = styled.div`
       return `${media.laptop.max} {display: none;}`;
     }
   }}
+`;
+
+export const BackDrop = styled.div`
+  z-index: ${vars.overlay.zIndex};
+  position: fixed;
+  width: 100vh;
+  height: 100vh;
+  transition: all 500ms;
+  background-color: ${p => p.theme.color.gray[5]};
 `;
 
 const theme = createMuiTheme({

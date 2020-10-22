@@ -3,11 +3,13 @@ const app = express();
 const cors = require("cors");
 const auth = require("./auth");
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000; // 환경변수, http://afrobambacar.github.io/2017/03/proccess-env-of-nodejs.html
 
 app.use(cors());
 app.use(express.json()); // req.body
 app.listen(PORT, () => console.log(`APP Listening at PORT: ${PORT}`));
+
+app.get("/", (req, res) => res.send("Hello World!"));
 
 app.get("/todos", async (req, res) => {
   try {

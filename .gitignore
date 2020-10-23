@@ -4,15 +4,15 @@
 .env
 .prettierrc
 auth*
+pool*
 *.rest
 *.sql
+/lib
 
 # dependencies
 /node_modules
 /.pnp
 .pnp.js
-
-/lib
 
 # testing
 /coverage
